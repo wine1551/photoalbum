@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>addlibrary</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/addlibrary.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+            .form-addlibrary .form-control:focus {
+                z-index: 2;
+            }
+
+            .form-addlibrary input[type="text"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            .addlibrary{
+                text-align: center;
+                font-size: 50px;
+                margin-top: 200px;
+            }
+
+            .addlibrary input{
+                width: 300px;
+                height: 50px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+                border-radius: 10px;
+                margin: 10px;
+            }
+            .addlibrary select{
+                width: 300px;
+                height: 50px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+                border-radius: 10px;
+                margin: 10px;
+            }
+            .addlibrary button{
+                width: 300px;
+                height: 50px;
+                border-radius: 10px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+
+            }
+
+
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+
+<body>
+<div class="mainTitle">创建相册</div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+
+
+
+<form class="addlibrary" action="./addlibrary" method="post">
+    <input type="text" name="libraryName"  placeholder="相册名">
+    <p class="placeholder"></p>
+    <input type="text" name="desctription" placeholder="相册描述" required=false>
+    <p style="height: 0px;margin: 0px"></p>
+    <select name="isPrivate">
+        <option value="0">私有</option>
+        <option value="1">公开</option>
+    </select>
+    <p style="height: 0px;margin: 0px"></p>
+    <button type="submit" style="margin-top:100px">创建相册</button>
+</form>
+
+
+
+
+
+
+
+</body>
+</html>

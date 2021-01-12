@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>Login</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/login.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+            .form-login {
+                max-width: 330px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+
+            .form-login .form-control {
+                position: relative;
+                height: auto;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .form-login .form-control:focus {
+                z-index: 2;
+            }
+
+            .form-login input[type="text"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .form-login input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 170px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 700px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+            .login{
+                text-align: center;
+                font-size: 50px;
+                margin-top: -500px;
+            }
+
+            .login input{
+                width: 300px;
+                height: 50px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+                border-radius: 10px;
+                margin: 10px;
+            }
+            .login button{
+                width: 300px;
+                height: 50px;
+                border-radius: 10px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+
+            }
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+<body>
+
+<div th:if="${error}">
+    <div class="alert alert-warning" th:text="${error}"></div>
+</div>
+<!--<img src="/pics/mainpagepic.jpg" alt="" width="1200px">-->
+
+<div class="mainTitle">电子相册</div>
+
+<div style="width: 100%">
+    <form class="login" action="/login" method="post" >
+        <input type="text" name="username"  placeholder="用户名"></input>
+        <p class="placeholder"></p>
+        <input type="password" name="password" placeholder="密码"></input>
+        <p style="height: 0px;margin: 0px"></p>
+        <button type="submit">登录</button>
+    </form>
+</div>
+
+</body>
+
+<footer>
+
+</footer>
+</html>

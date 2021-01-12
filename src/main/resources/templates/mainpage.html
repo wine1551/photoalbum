@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>mainpage</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/mainpage.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            .tx{
+                text-align: center;
+                padding-top: 150px;
+                font-size: 20px;
+
+            }
+
+            .bu{
+                width: 300px;
+                height: 50px;
+                border-radius: 10px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+                font-size: 20px;
+                clear:left;
+                margin: 0 auto;
+                display: block;
+            }
+
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+<body>
+<!--<p th:text="${session.user.name}"></p>-->
+<div class="mainTitle">用户主页</div>
+
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+<div class="tx">通知</div>
+
+<table th:border="1" th:width="1500" th:height="200" th:style="'margin:0 auto'">
+    <tr><td>
+        <div th:each="message:${messages}">
+            <span th:text="${message.text}"></span>
+            <p th:text="${#dates.format(message.createTime, 'yyyy-MM-dd HH:mm')}"></p>
+            <button th:onclick="|window.location.href='/message/delete?messageId=${message.id}'|">删除</button>
+            <p></p>
+        </div>
+    </td>
+    </tr>
+</table>
+
+
+
+
+<div class="tx">相册列表</div>
+
+
+    <div th:each="photoLibrary:${librarys}">
+        <button th:style="'height:250px;width:250px;display:block;float:left;margin:50px'">
+            <a th:href="@{/photolibrary(libraryId=${photoLibrary.id})}" th:text = "${photoLibrary.name}"></a>
+        </button>
+    </div>
+
+
+<div>
+<button th:class="bu" th:onclick="window.location.href='./addlibrary'" >添加相册</button>
+</div>>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>photoview</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/photoview.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+
+            .tx{
+                text-align: center;
+                padding-top: 150px;
+                font-size: 40px;
+
+            }
+
+            .tx1{
+                padding-top: 50px;
+                font-size: 30px;
+                margin-left: 200px;
+                color: cadetblue;
+                margin-bottom: 50px;
+            }
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+<body>
+
+<div class="mainTitle">动态</div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+
+<div class="tx">活动</div>
+<div th:each="activity:${activities}">
+    <p th:class="tx1" th:text="${activity.name}" th:onclick="|window.location.href='/photoview/activity?activityId=${activity.id}'|"></p>
+
+</div>
+
+<HR style="border:1 double #987cb9" width="100%" color=#faebcc SIZE=3>
+
+
+
+<div class="tx">图片</div>
+
+<div th:each="photo:${photos}" th:style="'margin-top:50px'">
+    <p th:text="${#dates.format(photo.createTime, 'yyyy-MM-dd HH:mm')}"></p>
+    <img  th:src="@{'data:image/jpeg;base64,'+${photo.photo}}" style="height: 300px"/>
+</div>
+
+</body>
+</html>

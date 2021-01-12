@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>activitydetail</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="activitydetail.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+
+            .tx{
+                margin: 250px;
+                text-indent:2em;
+                font-size: 40px;
+            }
+
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+<body>
+
+<div class="mainTitle" th:text="${activity.name}"></div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+<div th:class="tx" th:text="${activity.text}"></div>
+
+<div th:each="photo:${activity.photos}">
+    <img  th:src="@{'data:image/jpeg;base64,'+${photo.photo}}" style="height: 300px" th:onclick="|window.location.href='/photo?photoId=${photo.id}'|"/>
+</div>
+</body>
+</html>

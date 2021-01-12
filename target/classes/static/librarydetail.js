@@ -1,0 +1,1 @@
+console.log( $(".libraryname")[0].textContent)

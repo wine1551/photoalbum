@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>authmainpage</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/authmainpage.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            .se{
+                text-align: center;
+                font-size: 30px;
+                margin-top:100px;
+            }
+            .bu{
+                width: 300px;
+                height: 50px;
+                border-radius: 10px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+                font-size: 20px;
+                margin: 0 auto;
+            }
+
+            .tx{
+                text-align: center;
+                padding-top: 150px;
+                font-size: 20px;
+            }
+
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+<body>
+
+<div class="mainTitle">管理员主页</div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+
+<div th:switch="${nowFilterCondition}" th:class="se">
+    <p th:case="0">当前照片审核规则:不审核</p>
+    <p th:case="1">当前照片审核规则:审核</p>
+</div>
+
+<div th:style="'text-align: center'">
+<button th:class="bu" th:onclick="window.location.href='/auth/switchCondition'">更改审核规则</button>
+</div>
+<div th:style="'text-align: center;margin-top:20px'">
+<button th:class="bu" th:onclick="window.location.href='/auth/search'" >搜索</button>
+</div>
+<div th:style="'text-align: center;margin-top:20px'">
+<button th:class="bu" th:onclick="window.location.href='/auth/filterphoto'" >审核图片</button>
+</div>
+
+<div class="tx">活动列表</div>
+
+<div th:each="activity:${activities}">
+    <button th:style="'height:50px;width:200px;display:block;margin:0 auto'">
+        <p th:text="${activity.name}" th:onclick="|window.location.href='/photoview/activity?activityId=${activity.id}'|"></p>
+    </button>
+</div>
+
+<div th:style="'text-align: center;margin-top:50px'">
+    <button th:class="bu" th:onclick="window.location.href='/auth/addactivity'" >创建活动</button>
+</div>
+
+</body>
+</html>

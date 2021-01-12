@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+
+    <style>
+
+        body {
+            background-color: #eee;
+        }
+
+        .mainTitle {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            padding-top: 10px;
+            margin-bottom: 30px;
+            width: 100%;
+            color: rgb(14, 14, 14);
+            font-size: 60px;
+            text-align: center;
+            height: 100px;
+            background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+            background-size: cover;
+            background-position: center;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .f{
+            text-align: center;
+            font-size: 50px;
+            margin-top: 200px;
+        }
+
+        .in{
+            width: 300px;
+            height: 50px;
+            BACKGROUND-COLOR: rgba(200,200,200,0.5);
+            border: 0;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .bu{
+            width: 300px;
+            height: 50px;
+            border-radius: 10px;
+            BACKGROUND-COLOR: rgba(200,200,200,0.5);
+            border: 0;
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="mainTitle">搜索用户</div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+<form class="f" action="/auth/searchUser" method="post">
+    <input class="in" type="text" name="username" placeholder="用户名"></input>
+    <button class="bu" type="submit">搜索</button>
+</form>
+
+<div style="margin-top:50px;margin-left: 200px;font-size: 30px">搜索结果：</div>
+<div th:each="user:${users}">
+<span th:style="'margin-left: 200px;font-size:25px'"th:text="${user.name}"></span>
+<button th:onclick="|window.location.href='/auth/usershut?userId=${user.id}'|">禁言</button>
+</div>
+
+</body>
+</html>

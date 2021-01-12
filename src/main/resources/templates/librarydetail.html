@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>librarydetail</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/librarydetail.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+<body>
+
+
+<div class="mainTitle" th:text="${photoLibrary.name}"></div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+
+<div th:each="photo:${photos}">
+    <img  th:src="@{'data:image/jpeg;base64,'+${photo.photo}}" style="height: 300px;float:left;margin:60px" th:onclick="|window.location.href='/photo?photoId=${photo.id}'|"/>
+
+</div>
+
+
+
+<div>
+<form enctype="multipart/form-data" th:action="@{/photolibrary(libraryId=${photoLibrary.id})}" method="post" style="margin-top:500px;margin-left:800px;clear:left">
+    <input type="file" name="img"></input>
+
+    <button type="submit">上传</button>
+</form>
+</div>
+
+</body>
+
+
+<footer>
+    <script src="/jquery-3.0.0.min.js"></script>
+    <script src="/librarydetail.js"></script>
+
+</footer>
+
+
+</html>

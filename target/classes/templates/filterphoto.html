@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base::commonHeader(~{::title},~{::links},~{::scripts})">
+    <title>filterphoto</title>
+
+    <th:block th:fragment="links">
+        <!--/*  在这里写额外的link标签 */-->
+        <link rel="stylesheet" href="/filterphoto.css"/>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+
+            .mainTitle {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                padding-top: 10px;
+                margin-bottom: 30px;
+                width: 100%;
+                color: rgb(14, 14, 14);
+                font-size: 60px;
+                text-align: center;
+                height: 100px;
+                background-image: url("https://github.com/chopinic/DigitalPhotoLibrary/blob/master/src/main/resources/static/pics/mainpagepic2.jpg?raw=true");
+                background-size: cover;
+                background-position: center;
+                font-family: "Times New Roman", Times, serif;
+            }
+            .bu{
+                width: 300px;
+                height: 50px;
+                border-radius: 10px;
+                BACKGROUND-COLOR: rgba(200,200,200,0.5);
+                border: 0;
+                font-size: 20px;
+                margin-left: 400px;
+                margin-top: 100px;
+            }
+
+            .tx{
+                margin: 250px;
+                text-indent:2em;
+                font-size: 40px;
+            }
+
+            .img1{
+                height: 300px;
+                display: table-cell;
+                margin:0 auto;
+
+            }
+
+
+
+        </style>
+    </th:block>
+
+    <th:block th:fragment="scripts">
+        <!--/*  在这里写额外的script标签 */-->
+
+    </th:block>
+
+
+
+</head>
+
+<body>
+
+<div class="mainTitle">审核图片</div>
+
+<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow
+(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+<div th:each="photo:${photos}">
+    <img  th:class="img1" th:src="@{'data:image/jpeg;base64,'+${photo.photo}}"/>
+    <button th:class="bu" th:onclick="|window.location.href='/auth/photoAccept?photoId=${photo.id}'|">通过</button>
+    <button th:class="bu" th:onclick="|window.location.href='/auth/photoDecline?photoId=${photo.id}'|">驳回</button>
+    <input type="text" placeholder="驳回理由" name="reason" style="height: 50px;width: 200px">
+</div>
+
+</body>
+</html>
